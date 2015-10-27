@@ -7,8 +7,24 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+    <%= nav_bar :static => :top, class: "navbar-inverse" do %>
+      	<%= menu_group do %>
+	        <%= menu_item "Tasks", items_path, class: "navbar-brand" %>
+	    <% end %>
 
-<%= yield %>
+
+      	<%= menu_group :pull => :right do %>
+	        <% if user_signed_in? %>
+	          <%= menu_item "Signed in as: #{current_user.email}", edit_user_registration_path %>
+	          <%= menu_item "Sign out", destroy_user_session_path, :method => :delete %>
+	        <% else %>
+	          <%= menu_item "Sign in", new_user_session_path %>
+	        <% end %>
+        <% end %>
+    <% end %>
+<div class="container">
+  <%= yield %>
+</div>
 
 </body>
 </html>
