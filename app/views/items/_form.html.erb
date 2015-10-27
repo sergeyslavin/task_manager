@@ -20,6 +20,18 @@
   <div class="field">
     <%= f.input :done %>
   </div>
+  
+  <div class="field">
+    <%= hidden_field_tag "item[tags]", nil %>
+    <%= text_field_tag "item[tags]", @tags, id: "tags", placeholder: "Add the tags..." %>
+  </div>
+
+  <script>
+    $(function() {
+      $("#tags").tagsinput('items');
+    });
+  </script>
+
   <div class="actions">
     <%= f.submit %>
   </div>
