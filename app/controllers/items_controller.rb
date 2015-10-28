@@ -7,7 +7,6 @@ class ItemsController < ApplicationController
   end
 
   def show
-    @tags = @item.tags
   end
 
   def new

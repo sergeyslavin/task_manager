@@ -1,0 +1,61 @@
+.tasks_list {
+	width: 600px;
+
+	.task_item:hover {
+		cursor: pointer;
+	}
+
+	.item_notes {
+		margin-bottom: 20px;
+	}
+
+	.item_header {
+		margin: 5px;
+		clear: both;
+
+		.item_header_tags a:hover{
+			text-decoration: underline;
+		}
+		div.header-line {
+			display: inline-block;
+		}
+
+		.item-title {
+			font-size: 1.3em;
+			font-weight: bold;
+			margin-bottom: 10px;
+		}
+
+		.item-status {
+			float: right;
+		}
+
+	}
+
+	.item_date span{
+		color: #999;
+		font-size: 0.9em;
+		margin-right: 20px;
+		float: right;
+	}
+}
+
+.status {
+	font-size: 0.9em;
+	font-weight: bold;
+}
+
+.open {
+	color: #33CC00;
+}
+
+.closed {
+	color: #FF0000;
+}
+
+hr {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border: 0;
+    border-top: 1px solid #ccc;
+}

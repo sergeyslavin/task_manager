@@ -1,8 +1,10 @@
 class CreateItemsTagsTable < ActiveRecord::Migration
   def change
     create_table :items_tags, id: false do |t|
-      t.integer :item_id
-      t.integer :tag_id
+      t.references :item, null: false
+      t.references :tag, null: false
     end
+
+    add_index(:items_tags, [:item_id, :tag_id], :unique => true)
   end
 end

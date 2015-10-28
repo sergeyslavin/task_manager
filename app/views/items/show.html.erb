@@ -1,9 +1,6 @@
-<p id="notice"><%= notice %></p>
+<% title "Show ##{params[:id]}" %>
 
-<p>
-  <strong>User:</strong>
-  <%= @item.user_id %>
-</p>
+<%= print_notice(notice) %>
 
 <p>
   <strong>Title:</strong>
@@ -16,15 +13,14 @@
 </p>
 
 <p>
-  <strong>Done:</strong>
-  <%= @item.done %>
+  <strong>Status:</strong>
+  <%= is_closed_text(@item.done) %>
 </p>
 
 <p>
 	<strong>Tags</strong>
-	<% @tags.each do |tag| %>
-	<%= tag.name %>,
-	<% end %>
+	<%= print_tags(@item.tags) %>
 </p>
+
 <%= link_to 'Edit', edit_item_path(@item) %> |
 <%= link_to 'Back', items_path %>
