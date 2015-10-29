@@ -9,7 +9,7 @@ module ItemsHelper
   end
 
   def print_tags(tags)
-    (tags.map { |tag| "<a href='#'>#{tag.name}</a>" }.join(", ")).html_safe
+    (tags.empty?) ? "..." : (tags.map { |tag| "<a href='#'>#{tag.name}</a>" }.join(", ")).html_safe
   end
 
 end

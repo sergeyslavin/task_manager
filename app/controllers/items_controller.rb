@@ -3,7 +3,7 @@ class ItemsController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @items = Item.all
+    @items = Item.rank(:row_order).all
   end
 
   def show
@@ -20,7 +20,6 @@ class ItemsController < ApplicationController
   end
 
   def create
-
     current_item, tags_list = get_actual_tags_and_item
 
     @item = current_user.items.new(current_item)
@@ -62,6 +61,14 @@ class ItemsController < ApplicationController
     end
   end
 
+  def update_row_order
+    @item = Item.find(item_params[:item_id])
+    @item.row_order_position = item_params[:row_order_position]
+    @item.save
+
+    render nothing: true
+  end
+
   private
 
     def get_actual_tags_and_item
@@ -89,6 +96,6 @@ class ItemsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def item_params
-      params.require(:item).permit(:user_id, :title, :notes, :done, :tags)
+      params.require(:item).permit(:user_id, :title, :notes, :done, :tags, :row_order_position, :item_id)
     end
 end

@@ -3,15 +3,14 @@
 <% if !@items.empty? %>
   <h1>Listing Items</h1>
 
-  <table class="table tasks_list table-hover">
+  <table class="table tasks_list table-hover" id="sortable">
       <% @items.each do |item| %>
-        <tr>
-
+        
+        <tr data-item-id="<%= item.id %>" class="item">
           <td class="<%= (item.done) ? "warning" : "success" %> task_item" title="<%= is_closed_text(item.done) %>">
 
               <div class="item_header">
                 <div class="item-title header-line"><%= link_to item.title, item %></div>
-                <hr />
                 <div class="item-status header-line status <%= is_closed_text(item.done).downcase %> ">
                   <%= is_closed_text(item.done) %>
                   <%= link_to "Edit", edit_item_path(item), class: "btn btn-primary btn-sm" %>
@@ -22,7 +21,7 @@
                   Tags: <%= print_tags(item.tags) %>           
                 </div>
               </div>
-              <hr />
+              <hr class="item_line" />
               <div class="item_notes">
                 <%= truncate(item.notes, :length => 400) %>              
               </div>
