@@ -2,15 +2,15 @@ class ItemsController < ApplicationController
   before_action :set_item, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
 
+  load_and_authorize_resource :except => [:show, :index]
+  skip_load_resource :only => [:create]
+
   include Manager::Item::Decorator
 
   def index
     @title_for_search, @tags_ids = prepare_items_for_search_and_create_var
     @items = current_user.rank_items_and_handle_search(title: @title_for_search, tags: @tags_ids)
     @actual_tags = current_user.actual_tags
-  end
-
-  def show
   end
 
   def new

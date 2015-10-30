@@ -1,29 +1,17 @@
 <%= simple_form_for @item do |f| %>
-  
-  <%= error_field(@item) %>
+    <%= error_field(@item) %>
 
-  <div class="field">
     <%= f.input :title %>
-  </div>
-  <div class="field">
     <%= f.input :notes, as: :text, :input_html => { :rows => 10 } %>
-  </div>
-  <div class="field">
     <%= f.input :done %>
-  </div>
-  
-  <div class="field">
     <%= hidden_field_tag "item[tags]", nil %>
     <%= text_field_tag "item[tags]", @tags, id: "tags", placeholder: "Add tags..." %>
-  </div>
+    <div class="field"><%= f.submit %></div>
 
-  <script>
-    $(function() {
-      $("#tags").tagsinput('items');
-    });
-  </script>
-
-  <div class="actions">
-    <%= f.submit %>
-  </div>
 <% end %>
+
+<script>
+  $(function() {
+    $("#tags").tagsinput('items');
+  });
+</script>

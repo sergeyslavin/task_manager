@@ -1,0 +1,6 @@
+<%= simple_form_for @user do |f| %>
+    <%= error_field(@user) %>
+	<%= f.input :email %>
+	<%= f.association :role, prompt: "Select role" %>
+	<div class="field"><%= f.submit %></div>
+<% end %>

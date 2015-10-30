@@ -1,6 +1,9 @@
 <%= nav_bar :static => :top, class: "navbar-inverse" do %>
   	<%= menu_group do %>
         <%= menu_item "Tasks", items_path, class: "navbar-brand" %>
+        <% if user_signed_in? and current_user.is_admin? %>
+          <%= menu_item "Users", users_path %>
+        <% end %>
     <% end %>
 
   	<%= menu_group :pull => :right do %>

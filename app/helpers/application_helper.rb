@@ -4,6 +4,10 @@ module ApplicationHelper
     content_for :title, "Tasks | " + page_title.to_s
   end
 
+  def str_or_na(str)
+    str ? str : "-"
+  end
+
   def print_notice(notice)
     if notice
       content_tag(:div, class:'alert alert-success') do

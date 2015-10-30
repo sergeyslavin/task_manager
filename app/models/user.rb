@@ -10,8 +10,14 @@ class User < ActiveRecord::Base
 
   before_create :set_default_role
 
+  # delegate :can?, :cannot?, :to => :ability
+
+  # def ability
+  #   @ability ||= Ability.new(self)
+  # end
+
   def actual_tags
-    (items.map(&:tags).flatten!).uniq! || []
+    (items.map(&:tags).flatten!).try(:uniq!) || []
   end
 
   def rank_items_and_handle_search(options = {})

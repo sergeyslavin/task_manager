@@ -1,5 +1,4 @@
 <%= print_notice(notice) %>
-
 <div class="container-wrap">
 
   <div class="main-block">
@@ -21,12 +20,12 @@
                     </div>
 
                     <div class="item_header_tags">
-                      Tags: <%= print_tags(item.tags) %>           
+                      Tags: <%= print_tags(item.tags, link: true) %>
                     </div>
                   </div>
                   <hr class="item_line" />
                   <div class="item_notes">
-                    <%= truncate(item.notes, :length => 400) %>              
+                    <%= truncate(item.notes, :length => 400) %>          
                   </div>
                   <div class="item_date">
                     <span>

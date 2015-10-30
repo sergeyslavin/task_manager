@@ -1,0 +1,49 @@
+<h1>User #<%= @user.id %></h1>
+
+<%= print_notice(notice) %>
+
+<p>
+  <strong>Email:</strong>
+  <%= @user.email %>
+</p>
+
+<p>
+  <strong>Last Sign in:</strong>
+  <%= time_pretty_format(@user.last_sign_in_at) %>
+</p>
+
+<p>
+  <strong>Role:</strong>
+  <%= str_or_na(@user.try(:role).try(:name)) %>
+</p>
+
+<br />
+<% if @user.items.any? %>
+    <h1>Items</h1>
+
+    <table class="table">
+        <tbody>
+            <% @user.items.each do |item| %>
+            <tr class="<%= (item.done) ? "warning" : "success" %> task_item" title="<%= is_closed_text(item.done) %>">
+                <td>
+                    <h4><%= item.title %></h4>
+                    Status: <span class="status <%= is_closed_text(item.done).downcase %> "><%= is_closed_text(item.done) %></span>
+                    <p><%= truncate(item.notes, :length => 400) %></p>
+                    <p>Tags: <%= print_tags(item.tags, link: false) %></p>
+                    <p>
+                     <small>
+                      Created: <%= time_pretty_format(item.created_at) %>
+                    </small>
+                    <small>
+                      Modified: <%= time_pretty_format(item.updated_at) %>
+                    </small>
+                    </p>
+                </td>
+            </tr>
+            <% end %>
+        </tbody>
+    </table>
+<% end %>
+
+<%= link_to 'Edit', edit_user_path(@user) %> |
+<%= link_to 'Back', users_path %>

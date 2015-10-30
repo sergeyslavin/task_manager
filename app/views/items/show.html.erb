@@ -19,7 +19,7 @@
 
 <p>
 	<strong>Tags:</strong>
-	<%= print_tags(@item.tags) %>
+	<%= print_tags(@item.tags, link: true) %>
 </p>
 
 <%= link_to 'Edit', edit_item_path(@item) %> |
