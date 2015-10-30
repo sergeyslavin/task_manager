@@ -3,7 +3,19 @@
 <%= form_tag "", method: "get", class:"form-search" do |f|%>
 	<%= text_field_tag "search[title]", @title_for_search, class:"input-medium search-query" %>
 	<div class="search_form_check_boxes">
-	<%= collection_check_boxes("search", "tags_ids", @actual_tags, :id, :name, checked: @tags_ids)%>
+	<%= collection_check_boxes("search", "tags_ids", @actual_tags, :id, :name, checked: @tags_ids) do |b| %>
+ <div class="row">
+    <%= b.label(class: "check_box") do %>
+      <div class="col-xs-4">
+        <%= b.check_box(class: "check_box") %>
+      </div>
+
+      <div class="col-xs-5">
+        <%= b.object.name %>
+      </div>       
+    <% end %>
+  </div>
+	<% end %>
 	</div>
 	<%= submit_tag "Search", class:"btn" %>
 <% end %>

@@ -2,19 +2,11 @@ class ItemsController < ApplicationController
   before_action :set_item, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
 
+  include Manager::Item::Decorator
+
   def index
-
-    if params.has_key? :search      
-      search_params = params[:search]
-      @title_for_search = search_params[:title] if search_params.has_key? :title
-      
-      if search_params.has_key? :tags_ids
-        @tags_ids = search_params[:tags_ids].reject!(&:empty?)
-        @tags_ids = (@tags_ids.empty?) ? nil : @tags_ids.map!{ |item| item.to_i }        
-      end
-    end
-
-    @items = current_user.rank_items(title: @title_for_search, tags: @tags_ids)
+    @title_for_search, @tags_ids = prepare_items_for_search_and_create_var
+    @items = current_user.rank_items_and_handle_search(title: @title_for_search, tags: @tags_ids)
     @actual_tags = current_user.actual_tags
   end
 
@@ -79,25 +71,6 @@ class ItemsController < ApplicationController
   end
 
   private
-
-    def get_actual_tags_and_item
-      current_item = item_params
-      tags_list = (!current_item[:tags].empty?) ? current_item[:tags].split(",") : []
-      current_item.delete(:tags)
-
-      [current_item, tags_list]
-    end
-
-    def create_or_update_tags_list(tags_list)
-      if !tags_list.nil?
-        tags = []
-        tags_list.each do |tag|
-          tags << Tag.where(name: tag).first_or_create
-        end
-        @item.tags = tags
-      end
-    end
-
     # Use callbacks to share common setup or constraints between actions.
     def set_item
       @item = Item.find(params[:id])

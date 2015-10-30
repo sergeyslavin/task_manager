@@ -72,11 +72,20 @@ hr.item_line {
 	.filter-panel {
 		width: 30%;
 		float: left;
+		height: 400px;
 		background-color: #fafafa;
+		padding: 20px;
+
+		.search_form_check_boxes {
+			height: 230px;
+			overflow-x: hidden;
+			overflow-y: scroll;
+			margin: 20px 0;
+		}
+
+		.search_form_check_boxes input[type="checkbox"] {
+			display: block;
+		}
 	}
 
-}
-
-.search_form_check_boxes input {
-	display: block;
 }

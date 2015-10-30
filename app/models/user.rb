@@ -11,7 +11,7 @@ class User < ActiveRecord::Base
     items.map(&:tags).flatten!
   end
 
-  def rank_items(options = {})
+  def rank_items_and_handle_search(options = {})
     items.rank(:row_order).search_by(title: options[:title], tags: options[:tags])
   end
   

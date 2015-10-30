@@ -3,6 +3,7 @@
 <div class="container-wrap">
 
   <div class="main-block">
+    <%= link_to "Add new task", new_item_path, class:"btn btn-primary" %>
     <% if @items.any? %>
       <h1>Listing Items</h1>
       <table class="table tasks_list table-hover" id="sortable">
@@ -43,7 +44,6 @@
     <% else %>
       <h3>Create new task!</h3>
     <% end %>
-    <%= link_to "Add new task", new_item_path, class:"btn btn-primary" %>
   </div>
 
   <div class="filter-panel">
