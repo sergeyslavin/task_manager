@@ -2,7 +2,7 @@ class ItemsController < ApplicationController
   before_action :set_item, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
 
-  load_and_authorize_resource :except => [:show, :index]
+  load_and_authorize_resource
   skip_load_resource :only => [:create]
 
   include Manager::Item::Decorator

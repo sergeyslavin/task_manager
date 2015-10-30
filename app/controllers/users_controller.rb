@@ -2,11 +2,12 @@ class UsersController < ApplicationController
 
   before_filter :set_user, only: [:show, :edit, :update, :destroy]
   
-  load_and_authorize_resource :except => [:show, :index]
+  load_and_authorize_resource :except => [:index]
   skip_load_resource :only => [:create]
 
   def index
     @users = User.where.not(:id => current_user.id)
+    authorize! :index, @users.first
   end
 
   def update
@@ -16,9 +17,6 @@ class UsersController < ApplicationController
     else
       render :action => 'edit'
     end
-  end
-
-  def show
   end
 
   def destroy
