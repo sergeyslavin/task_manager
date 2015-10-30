@@ -5,7 +5,7 @@ class ItemsController < ApplicationController
   load_and_authorize_resource
   skip_load_resource :only => [:create]
 
-  include Manager::Item::Decorator
+  include ItemCtrlFilter #included item controller concern
 
   def index
     @title_for_search, @tags_ids = prepare_items_for_search_and_create_var
@@ -17,7 +17,6 @@ class ItemsController < ApplicationController
     @item = Item.new
     @tags = nil
   end
-
 
   def edit
     @tags = @item.tags.map(&:name).join(",")
