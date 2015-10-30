@@ -9,7 +9,7 @@ class Item < ActiveRecord::Base
 
   def self.search_by(options = {})
     search_by_title_result = (options[:title].nil?) ? all : self.search_by_title(options[:title])
-    search_by_title_result = self.find_by_tags(search_by_title_result, options[:tags]) if !options[:tags].nil?
+    search_by_title_result = self.find_by_tags(search_by_title_result, options[:tags]) if !options[:tags].empty?
     search_by_title_result
   end
 
