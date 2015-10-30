@@ -1,44 +1,53 @@
 <%= print_notice(notice) %>
 
-<% if !@items.empty? %>
-  <h1>Listing Items</h1>
+<div class="container-wrap">
 
-  <table class="table tasks_list table-hover" id="sortable">
-      <% @items.each do |item| %>
-        
-        <tr data-item-id="<%= item.id %>" class="item">
-          <td class="<%= (item.done) ? "warning" : "success" %> task_item" title="<%= is_closed_text(item.done) %>">
+  <div class="main-block">
+    <% if @items.any? %>
+      <h1>Listing Items</h1>
+      <table class="table tasks_list table-hover" id="sortable">
+          <% @items.each do |item| %>
+            
+            <tr data-item-id="<%= item.id %>" class="item">
+              <td class="<%= (item.done) ? "warning" : "success" %> task_item" title="<%= is_closed_text(item.done) %>">
 
-              <div class="item_header">
-                <div class="item-title header-line"><%= link_to item.title, item %></div>
-                <div class="item-status header-line status <%= is_closed_text(item.done).downcase %> ">
-                  <%= is_closed_text(item.done) %>
-                  <%= link_to "Edit", edit_item_path(item), class: "btn btn-primary btn-sm" %>
-                  <%= link_to "Remove", item, method: :delete, class: "btn btn-danger btn-sm", data: { confirm: "Are you sure?" } %>
-                </div>
+                  <div class="item_header">
+                    <div class="item-title header-line"><%= link_to item.title, item %></div>
+                    <div class="item-status header-line status <%= is_closed_text(item.done).downcase %> ">
+                      <%= is_closed_text(item.done) %>
+                      <%= link_to "Edit", edit_item_path(item), class: "btn btn-primary btn-sm" %>
+                      <%= link_to "Remove", item, method: :delete, class: "btn btn-danger btn-sm", data: { confirm: "Are you sure?" } %>
+                    </div>
 
-                <div class="item_header_tags">
-                  Tags: <%= print_tags(item.tags) %>           
-                </div>
-              </div>
-              <hr class="item_line" />
-              <div class="item_notes">
-                <%= truncate(item.notes, :length => 400) %>              
-              </div>
-              <div class="item_date">
-                <span>
-                  Created: <%= time_pretty_format(item.created_at) %>
-                </span>
-                <span>
-                  Modified: <%= time_pretty_format(item.updated_at) %>
-                </span>
-              </div>
-          </td>
-        </tr>
-      <% end %>
-  </table>
-<% else %>
-  <h3>Create new task!</h3>
-<% end %>
+                    <div class="item_header_tags">
+                      Tags: <%= print_tags(item.tags) %>           
+                    </div>
+                  </div>
+                  <hr class="item_line" />
+                  <div class="item_notes">
+                    <%= truncate(item.notes, :length => 400) %>              
+                  </div>
+                  <div class="item_date">
+                    <span>
+                      Created: <%= time_pretty_format(item.created_at) %>
+                    </span>
+                    <span>
+                      Modified: <%= time_pretty_format(item.updated_at) %>
+                    </span>
+                  </div>
+              </td>
+            </tr>
+          <% end %>
+      </table>
 
-<%= link_to "Add new task", new_item_path, class:"btn btn-primary" %>
+    <% else %>
+      <h3>Create new task!</h3>
+    <% end %>
+    <%= link_to "Add new task", new_item_path, class:"btn btn-primary" %>
+  </div>
+
+  <div class="filter-panel">
+    <%= render 'filter' %>
+  </div>
+
+</div>

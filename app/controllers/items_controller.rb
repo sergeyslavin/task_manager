@@ -3,7 +3,19 @@ class ItemsController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @items = Item.rank(:row_order).all
+
+    if params.has_key? :search      
+      search_params = params[:search]
+      @title_for_search = search_params[:title] if search_params.has_key? :title
+      
+      if search_params.has_key? :tags_ids
+        @tags_ids = search_params[:tags_ids].reject!(&:empty?)
+        @tags_ids = (@tags_ids.empty?) ? nil : @tags_ids.map!{ |item| item.to_i }        
+      end
+    end
+
+    @items = current_user.rank_items(title: @title_for_search, tags: @tags_ids)
+    @actual_tags = current_user.actual_tags
   end
 
   def show
@@ -16,14 +28,12 @@ class ItemsController < ApplicationController
 
 
   def edit
-    @tags = @item.tags.map { |e| e.name }.join(",")
+    @tags = @item.tags.map(&:name).join(",")
   end
 
   def create
     current_item, tags_list = get_actual_tags_and_item
-
     @item = current_user.items.new(current_item)
-
     create_or_update_tags_list(tags_list)
 
     respond_to do |format|
@@ -39,7 +49,6 @@ class ItemsController < ApplicationController
 
   def update
     current_item, tags_list = get_actual_tags_and_item
-
     create_or_update_tags_list(tags_list)
 
     respond_to do |format|

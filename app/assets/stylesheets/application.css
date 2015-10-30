@@ -14,10 +14,6 @@
  *= require_self
  */
 
-.container {
-	width: 1200px;
-}
-
 .container .wrap {
 	margin-bottom: 30px;
 }
@@ -28,4 +24,5 @@
 	text-align: center;
 	line-height: 30px;
 	color: #ccc;
+	clear: both;
 }

@@ -1,6 +1,4 @@
 .tasks_list {
-	width: 600px;
-
 	.task_item:hover {
 		cursor: pointer;
 	}
@@ -62,4 +60,23 @@ hr {
 
 hr.item_line {
 	border: 1px dashed #ccc;
+}
+
+.container-wrap {
+	
+	.main-block {
+		width: 70%;
+		float: left;
+	}
+
+	.filter-panel {
+		width: 30%;
+		float: left;
+		background-color: #fafafa;
+	}
+
+}
+
+.search_form_check_boxes input {
+	display: block;
 }

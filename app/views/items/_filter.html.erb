@@ -1,0 +1,10 @@
+<h4>Filter Panel</h4>
+
+<%= form_tag "", method: "get", class:"form-search" do |f|%>
+	<%= text_field_tag "search[title]", @title_for_search, class:"input-medium search-query" %>
+	<div class="search_form_check_boxes">
+	<%= collection_check_boxes("search", "tags_ids", @actual_tags, :id, :name, checked: @tags_ids)%>
+	</div>
+	<%= submit_tag "Search", class:"btn" %>
+<% end %>
+

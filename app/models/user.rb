@@ -5,5 +5,14 @@ class User < ActiveRecord::Base
             :recoverable, :rememberable, :trackable, :validatable
 
   has_many  :items, dependent: :destroy
+
+
+  def actual_tags
+    items.map(&:tags).flatten!
+  end
+
+  def rank_items(options = {})
+    items.rank(:row_order).search_by(title: options[:title], tags: options[:tags])
+  end
   
 end
