@@ -17,7 +17,7 @@ class User < ActiveRecord::Base
   # end
 
   def actual_tags
-    (items.map(&:tags).flatten!).try(:uniq!) || []
+    (items.map(&:tags).flatten!).try(:uniq) || []
   end
 
   def rank_items_and_handle_search(options = {})

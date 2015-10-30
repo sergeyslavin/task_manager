@@ -8,7 +8,7 @@ module Manager
           search_params = params[:search]
           title_for_search = search_params[:title] if search_params.has_key? :title          
           if search_params.has_key? :tags_ids
-            tags_ids = search_params[:tags_ids].reject!(&:empty?)
+            tags_ids = search_params[:tags_ids].reject(&:empty?)
             tags_ids = tags_ids.map!{ |item| item.to_i } unless tags_ids.empty? 
           end
         end
