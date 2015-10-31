@@ -19,7 +19,7 @@ class ItemsController < ApplicationController
   end
 
   def edit
-    @tags = @item.tags.map(&:name).join(",")
+    respond_with @tags = @item.tags.map(&:name).join(",")
   end
 
   def create
@@ -27,7 +27,7 @@ class ItemsController < ApplicationController
     @item = current_user.items.new(current_item)
     create_or_update_tags_list(tags_list)
 
-    respond_to do |format|
+    respond_with do |format|
       if @item.save
         format.html { redirect_to @item, notice: 'Item was successfully created.' }
         format.json { render :show, status: :created, location: @item }
@@ -42,7 +42,7 @@ class ItemsController < ApplicationController
     current_item, tags_list = get_actual_tags_and_item
     create_or_update_tags_list(tags_list)
 
-    respond_to do |format|
+    respond_with do |format|
       if @item.update(current_item)
         format.html { redirect_to @item, notice: 'Item was successfully updated.' }
         format.json { render :show, status: :ok, location: @item }
@@ -55,7 +55,7 @@ class ItemsController < ApplicationController
 
   def destroy
     @item.destroy
-    respond_to do |format|
+    respond_with do |format|
       format.html { redirect_to items_url, notice: 'Item was successfully destroyed.' }
       format.json { head :no_content }
     end

@@ -1,8 +1,11 @@
 module UserModelFilter
   extend ActiveSupport::Concern
   
-  included do
-    scope :users_without_me, ->(user) { where.not(:id => user.id) }
+  class_methods do
+    def users_without_me(user, select = []) 
+      where_condition = where.not(:id => user.id)
+      where_condition.select(select) unless select.empty?
+    end
   end
 
   def actual_tags

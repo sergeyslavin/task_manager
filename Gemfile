@@ -33,6 +33,7 @@ gem 'simple_form'
 
 gem "cancan"
 gem 'devise'
+gem 'simple_token_authentication', '~> 1.0'
 
 gem 'ranked-model'
 
