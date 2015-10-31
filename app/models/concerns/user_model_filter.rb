@@ -4,7 +4,8 @@ module UserModelFilter
   class_methods do
     def users_without_me(user, select = []) 
       where_condition = where.not(:id => user.id)
-      where_condition.select(select) unless select.empty?
+      where_condition = where_condition.select(select) unless select.empty?
+      where_condition
     end
   end
 
