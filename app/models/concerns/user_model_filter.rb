@@ -1,5 +1,9 @@
 module UserModelFilter
   extend ActiveSupport::Concern
+  
+  included do
+    scope :users_without_me, ->(user) { where.not(:id => user.id) }
+  end
 
   def actual_tags
     (items.map(&:tags).flatten!).try(:uniq) || []

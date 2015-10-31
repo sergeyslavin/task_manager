@@ -31,7 +31,7 @@
                     <h4><%= item.title %></h4>
                     Status: <span class="status <%= is_closed_text(item.done).downcase %> "><%= is_closed_text(item.done) %></span>
                     <p><%= truncate(item.notes, :length => 400) %></p>
-                    <p>Tags: <%= print_tags(item.tags, link: false) %></p>
+                    <p><strong>Tags:</strong> <%= print_tags(item.tags, link: false) %></p>
                     <p>
                      <small>
                       Created: <%= time_pretty_format(item.created_at) %>
