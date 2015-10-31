@@ -19,7 +19,7 @@ class ItemsController < ApplicationController
   end
 
   def edit
-    respond_with @tags = @item.tags.map(&:name).join(",")
+    @tags = @item.tags.map(&:name).join(",")
   end
 
   def create

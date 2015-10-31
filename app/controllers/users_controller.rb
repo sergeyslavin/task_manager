@@ -6,7 +6,7 @@ class UsersController < ApplicationController
   skip_load_resource :only => [:create]
 
   def index
-    respond_with @users = User.users_without_me(current_user, [:id, :email, :last_sign_in_at, :role_id])
+    @users = User.users_without_me(current_user, [:id, :email, :last_sign_in_at, :role_id])
   end
 
   def update
