@@ -9,7 +9,7 @@ gem 'sqlite3', group: :development
 
 group :production do
   gem 'pg'
-  gem 'rails_12factor', group: :production
+  gem 'rails_12factor'
 end
 
 # Use SCSS for stylesheets
@@ -58,7 +58,6 @@ group :development, :test do
   gem 'byebug'
 
   gem "better_errors"
-
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 2.0'
 
@@ -66,3 +65,6 @@ group :development, :test do
   gem 'spring'
 end
 
+group :test do
+  gem 'minitest-spec-rails'
+end
