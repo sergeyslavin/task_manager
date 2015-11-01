@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 describe Item do
-
   context ".search_by" do
 
     before{ create_list(:item, 3) }
@@ -32,5 +31,4 @@ describe Item do
     end
 
   end
-
 end
