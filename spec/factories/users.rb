@@ -7,6 +7,7 @@ FactoryGirl.define do
   factory :user do
     sequence(:email) { |i| "email#{i}@mail.com" }
     password "123"
+    last_sign_in_at Time.now.utc
 
     factory :admin do
       association :role, factory: :role, name: "admin"

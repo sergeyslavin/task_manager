@@ -16,7 +16,10 @@
 # users commonly want.
 #
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
+
+# require 'capybara/rspec'
 require 'capybara/poltergeist'
+
 Capybara.javascript_driver = :poltergeist
 
 RSpec.configure do |config|
