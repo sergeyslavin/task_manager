@@ -8,7 +8,7 @@ rake manager:add_role email=test@test.com role=admin
 ```
 
 
-### Rest accesss to application
+### Rest access to application
 
 *Some Example:*
 
